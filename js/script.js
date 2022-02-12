@@ -13,7 +13,7 @@ function titleClickHandler(event){
 
   const articleList = document.querySelectorAll('.posts .post');
 
-  for (let article of articleList) {
+  for(let article of articleList) {
     article.classList.remove('active');
   }
 
@@ -39,38 +39,39 @@ function generateTitleLinks(){
   /* remove contents of titleList */
   const titleList = document.querySelector(optTitleListSelector);
   console.log (titleList);
-  /* NIE WIEM JAK ZASTOSOWAĆ clearMessages */
-
+  
+  document.querySelector(optTitleListSelector).innerHTML = '';
+    
   /* for each article */
-  const articles = document.querySelectorAll(optArticleSelector);
-  console.log(articles);
 
-  for(let article of articles){} /* PĘTLA DLA WSZYSTKICH ARTYKUŁÓW - PO CO W TYM MOMENCIE??? */
+  const articles = document.querySelectorAll(optArticleSelector)
     
   /* get the article id */
 
-  const articleId = clickedElement.getAttribute('Id');
-  /* script.js:55 Uncaught ReferenceError: clickedElement is not defined
-    at generateTitleLinks (script.js:55:21)
-    at script.js:76:1 - CZY clidkedElement zdefiniowany powyżej nie powinien odnosić się do tego miejsca również?? */ 
+  const articleId = document.getElementById('id') /* pewnie źle... */
 
+  for(let article of articles){
+    articleId
+  }
+   
   /* find the title element */
 
-  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-
+  for(let article of articles){
+    optTitleSelector
+  }
+    
   /* get the title from the title element */
 
-  const title = clickedElement.getAttribute(articleTitle)
+  const article = document.querySelector(optArticleSelector)
 
+  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+   
   /* create HTML of the link */
-
-  const linkHTML = '<li><a href="# + articleId + "><span>' + articleId + '</span></a></li>';
-  console.log(linkHTML)
 
   /* insert link into titleList */
 
-  titleList.innerHTML = titleList.innerHTML + linkHTML;
-
+  
+  
 }
 
 
