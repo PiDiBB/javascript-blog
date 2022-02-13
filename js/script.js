@@ -47,32 +47,22 @@ function generateTitleLinks(){
   const articles = document.querySelectorAll(optArticleSelector)
     
   /* get the article id */
-
-  const articleId = document.getElementById('id') /* pewnie źle... */
-
-  for(let article of articles){
-    articleId
-  }
-   
   /* find the title element */
-
-  for(let article of articles){
-    optTitleSelector
-  }
-    
   /* get the title from the title element */
-
-  const article = document.querySelector(optArticleSelector)
-
-  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-   
   /* create HTML of the link */
 
+  for(let article of articles){
+  const articleId = article.getAttribute('id');
+  const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+  const linkHTML = '<li><a href="#'+ articleId + '" ><span>' + articleTitle + '</span></a></li>';
+  
   /* insert link into titleList */
 
   
   
+  }
+     
+  
 }
-
 
 generateTitleLinks();
