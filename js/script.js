@@ -65,8 +65,8 @@ function generateTags(){
   
   for(let article of articles){
     
-    const titleList = article.querySelector(optArticleTagSelector);
-      
+    const tagWrapper = article.querySelector(optArticleTagSelector);
+                  
     let html = '';
 
     const articleTags = article.getAttribute('data-tags');
@@ -83,8 +83,7 @@ function generateTags(){
     articles.innerHTML = html;
   
     const links = document.querySelectorAll('.post-tags .list');
-    console.log(links)
-
+    
     for(let link of links){
       link.addEventListener('click', titleClickHandler);
     }
