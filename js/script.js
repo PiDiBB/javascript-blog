@@ -73,11 +73,11 @@ function generateTags(){
     const articleTagsArray = articleTags.split(' ');
     
     for(let tag of articleTagsArray) {
-
-      const articleTitle = article.querySelector(optTitleSelector).innerHTML;
-      
-      const linkHTML = '<li><a href="#tag-' + tag + '" ><span>' + articleTitle + '</span></a></li>';
-      html = html + linkHTML;   
+    
+      const linkHTML = '<li><a href="#tag-' + tag + '" ><span>' + tag + '</span></a></li>';
+           
+      html = html + linkHTML;
+        
     }
     /* insert HTML of all the links into the tags wrapper */
     
@@ -86,11 +86,12 @@ function generateTags(){
     const links = document.querySelectorAll('.post-tags .list');
     
     for(let link of links){
-      link.addEventListener('click', titleClickHandler);
+      link.addEventListener('click', tagClickHandler);
     }
   }
 }
 generateTags();
+
  
 function tagClickHandler(event){
   event.preventDefault();
@@ -110,7 +111,7 @@ function tagClickHandler(event){
 
   /* START LOOP: for each active tag link */
 
-    /* remove class active */
+  /* remove class active */
 
   /* END LOOP: for each active tag link */
 
@@ -118,7 +119,7 @@ function tagClickHandler(event){
 
   /* START LOOP: for each found tag link */
 
-    /* add class active */
+  /* add class active */
 
   /* END LOOP: for each found tag link */
 
@@ -130,7 +131,7 @@ function addClickListenersToTags(){
 
   /* START LOOP: for each link */
 
-    /* add tagClickHandler as event listener for that link */
+  /* add tagClickHandler as event listener for that link */
 
   /* END LOOP: for each link */
 }
