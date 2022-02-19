@@ -4,7 +4,7 @@ function titleClickHandler(event){
   event.preventDefault();
   const clickedElement = this;
   
-  const activeLinks = document.querySelectorAll('.titles a.active');
+  const activeLinks = document.querySelectorAll('.author-name');
 
   for(let activeLink of activeLinks){
     activeLink.classList.remove('active');
@@ -27,16 +27,17 @@ function titleClickHandler(event){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagSelector = '.post-tags .list';
+  optArticleTagSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.authors .author-name';
   
-function generateTitleLinks(){
+function generateTitleLinks(customSelector = ''){
 
   const titleList = document.querySelector(optTitleListSelector);
     
   document.querySelector(optTitleListSelector).innerHTML = '';
     
-  const articles = document.querySelectorAll(optArticleSelector);
-  
+  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+   
   let html = '';
  
   for(let article of articles){
@@ -62,12 +63,13 @@ function generateTags(){
 
   const articles = document.querySelectorAll(optArticleSelector);
   
+  
   for(let article of articles){
     
     const tagWrapper = article.querySelector(optArticleTagSelector);
-                  
+    
     let html = '';
-
+    
     const articleTags = article.getAttribute('data-tags');
     
     const articleTagsArray = articleTags.split(' ');
@@ -79,14 +81,14 @@ function generateTags(){
       html = html + linkHTML;
         
     }
-    /* insert HTML of all the links into the tags wrapper */
-    
+        
     tagWrapper.innerHTML = html;
-    
-    const links = document.querySelectorAll('.post-tags .list');
+     
+    const links = document.querySelectorAll('.post-tags .list a');
     
     for(let link of links){
       link.addEventListener('click', tagClickHandler);
+      
     }
   }
 }
@@ -98,42 +100,59 @@ function tagClickHandler(event){
   const clickedElement = this;
   
   const tagSelector = clickedElement.getAttribute('href');
-  console.log(tagSelector);
+  
+  const clearTag = tagSelector.replace('#tag-', '');
+  
+  const allActiveTags = document.querySelectorAll('a.active[href^="#tag-"]');
+  
+  for(let tag of allActiveTags) {
+    tag.classList.remove('active');
+  }
 
-
-  /* prevent default action for this event */
-  /* make new constant named "clickedElement" and give it the value of "this" */
-  /* make a new constant "href" and read the attribute "href" of the clicked element */
-
-  /* make a new constant "tag" and extract tag from the "href" constant */
-
-  /* find all tag links with class active */
-
-  /* START LOOP: for each active tag link */
-
-  /* remove class active */
-
-  /* END LOOP: for each active tag link */
-
-  /* find all tag links with "href" attribute equal to the "href" constant */
-
-  /* START LOOP: for each found tag link */
-
-  /* add class active */
-
-  /* END LOOP: for each found tag link */
-
-  /* execute function "generateTitleLinks" with article selector as argument */
+  const allHrefTags = document.querySelectorAll('a[href="' + tagSelector + '"]');
+  
+  for(let tag of allHrefTags) {
+    tag.classList.add('active');
+  }
 }
 
 function addClickListenersToTags(){
-  /* find all links to tags */
 
-  /* START LOOP: for each link */
+  const findAllLinks = document.querySelectorAll('tag')
+   
+}
+addClickListenersToTags();
 
-  /* add tagClickHandler as event listener for that link */
 
-  /* END LOOP: for each link */
+function generateAuthors() {
+
+  const authorNamesList = document.querySelectorAll(optArticleAuthorSelector);
+   
+  for(let author of authorNamesList) {
+    const authorName = document.querySelector(optArticleAuthorSelector).innerHTML;
+    console.log(authorName); /*czemu wyświetla się tylko jeden autor(4) */
+  }  
+}
+generateAuthors();
+
+
+function addClickListenersToAuthors(){
+
+  const findAllLinks = document.querySelectorAll('.author-name');
+}
+addClickListenersToAuthors();
+
+
+function authorClickHandler(event){
+  event.preventDefault();
+  const clickedElement = this;
+
+  const authorNameSelector = clickedElement.getAttribute('href');
+  
+
 }
 
-addClickListenersToTags();
+
+
+
+
