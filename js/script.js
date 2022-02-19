@@ -28,7 +28,7 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.authors .author-name';
+  optArticleAuthorSelector = '.post-author';
   
 function generateTitleLinks(customSelector = ''){
 
@@ -71,7 +71,7 @@ function generateTags(){
     let html = '';
     
     const articleTags = article.getAttribute('data-tags');
-    
+   
     const articleTagsArray = articleTags.split(' ');
     
     for(let tag of articleTagsArray) {
@@ -119,38 +119,34 @@ function tagClickHandler(event){
 function addClickListenersToTags(){
 
   const findAllLinks = document.querySelectorAll('tag')
-   
+  console.log(findAllLinks)
 }
 addClickListenersToTags();
 
 
-function generateAuthors() {
+function generateAuthors(customSelector = '') {
 
-  const authorNamesList = document.querySelectorAll(optArticleAuthorSelector);
-   
-  for(let author of authorNamesList) {
-    const authorName = document.querySelector(optArticleAuthorSelector).innerHTML;
-    console.log(authorName); /*czemu wyświetla się tylko jeden autor(4) */
+  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+
+  for(let article of articles) {
+    const articleAuhor = article.getAttribute('data-author')
   }  
+
 }
 generateAuthors();
 
 
 function addClickListenersToAuthors(){
 
-  const findAllLinks = document.querySelectorAll('.author-name');
+  const findAllLinks = document.querySelectorAll('data-author');
+  
 }
 addClickListenersToAuthors();
 
 
-function authorClickHandler(event){
-  event.preventDefault();
-  const clickedElement = this;
 
-  const authorNameSelector = clickedElement.getAttribute('href');
-  
 
-}
+
 
 
 
