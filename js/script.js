@@ -28,10 +28,10 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post-author';
+  optArticleAuthorSelector = '.post';
   
 function generateTitleLinks(customSelector = ''){
-
+  
   const titleList = document.querySelector(optTitleListSelector);
     
   document.querySelector(optTitleListSelector).innerHTML = '';
@@ -94,7 +94,7 @@ function generateTags(){
 }
 generateTags();
 
- 
+
 function tagClickHandler(event){
   event.preventDefault();
   const clickedElement = this;
@@ -113,42 +113,63 @@ function tagClickHandler(event){
   
   for(let tag of allHrefTags) {
     tag.classList.add('active');
-  }
+  }  
 }
 
 function addClickListenersToTags(){
 
-  const findAllLinks = document.querySelectorAll('tag')
-  console.log(findAllLinks)
+  const links = document.querySelectorAll('.post-tags .list a');
+  
+  for(let link of links){
+    link.addEventListener('click', tagClickHandler);
+  
+  }  
 }
 addClickListenersToTags();
 
 
-function generateAuthors(customSelector = '') {
 
-  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+function generateAuthors() {
 
+  const articles = document.querySelectorAll(optArticleSelector);
+  
   for(let article of articles) {
-    const articleAuhor = article.getAttribute('data-author')
-  }  
-
+  
+    const articleAuthors = article.getAttribute('data-author');
+               
+  }
+         
 }
 generateAuthors();
 
+function authorClickHandler(event){
+  event.preventDefault();
+  const clickedElement = this;
+
+  const authorSelector = clickedElement.getAttribute('href');
+  
+  const clearAuthor = authorSelector.replace('......................');
+  
+  const allActiveAuthors = document.querySelectorAll('........................');
+
+  for(let author of allActiveAuthors) {
+    author.classList.remove('active');
+  }
+
+  const allHrefAuthors = document.querySelectorAll('......................');
+  
+  for(let author of allActiveAuthors) {
+    tag.classList.add('active');
+  }  
+}
 
 function addClickListenersToAuthors(){
 
-  const findAllLinks = document.querySelectorAll('data-author');
+  const links = document.querySelectorAll('.author-name');
   
+  for(let link of links){
+    link.addEventListener('click', authorClickHandler);
+  
+  }  
 }
 addClickListenersToAuthors();
-
-
-
-
-
-
-
-
-
-
