@@ -41,6 +41,10 @@ body {
   }
 }
 
+.sidebar .list a {
+  text-decoration: none;
+}
+
 /* Layout */
 
 .wrapper {
@@ -117,4 +121,9 @@ body {
   p {
     margin: 0 10px 0 0;
   }
+}
+
+.post-tags a {
+  margin-right: 15px;
+  text-decoration: none;
 }
