@@ -98,30 +98,22 @@ function generateTags(){
   const tagList = document.querySelector(optTagsListSelector);
   
   /*[NEW] create variable for all links HTML code */
+
+
   let allTagsHTML = '';
   /*[NEW] START LOOP: for each tag in allTags: */
   for(let tag in allTags){
-    
     /*[NEW] generate code of a link and add it to allTags HTML */
-    allTags += tag + ' (' + allTags[tag] + ') ';
-    console.log(allTags);
+    allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+   
+    const linkHTML = '<a href="#' + tag + '" ><span>' + allTagsHTML + '</span></a>';
+    allTagsHTML = linkHTML;   
 
-    const linkHTML = '<a href="#' +  + '" ><span>' +  + '</span></a>';
-  console.log(linkHTML);
-  
-  }
-  
   /*[NEW] END LOOP: for each tag in allTags: */
-
+  }
   /*[NEW] add html from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
-  console.log(allTagsHTML);
-}
-
-const links = document.querySelectorAll('.list-horizontal a');
-      
-for(let link of links){
-  link.addEventListener('click', tagClickHandler);
+  
 }
 generateTags();
 
@@ -179,6 +171,7 @@ function generateAuthors(){
     const linkHTML = '<a href="#author-' + articleAuthor + '" ><span>' + articleAuthor + '</span></a>';
     
     authorWrapper.innerHTML = linkHTML;
+   
   }
   const links = document.querySelectorAll('.post-author a');
       
