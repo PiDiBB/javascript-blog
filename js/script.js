@@ -29,7 +29,9 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags.list';
+  optTagsListSelector = '.tags.list',
+  optCloudClassCount = 5,
+  optCloudClassPrefix = 'tag-size-';
   
     
 
@@ -79,10 +81,23 @@ function calculateTagsParams(tags){
       params.min = tags[tag];
     }
   }
-
   return params;
 }
 calculateTagsParams();
+
+
+function calculateTagClass(count, params){
+  params = {
+    min: 1,
+    max: 5
+  };
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+  return optCloudClassPrefix + classNumber; 
+}
+calculateTagClass();
 
 
 function generateTags(){
@@ -104,6 +119,8 @@ function generateTags(){
     /* START LOOP: for each tag */
     for(let tag of articleTagsArray) {
       /* generate HTML of the link */
+
+
       const linkHTML = '<a href="#tag-' + tag + '" ><span>' + tag + '</span></a>';
       
       
@@ -130,16 +147,22 @@ function generateTags(){
   
   /*[NEW] create variable for all links HTML code */
   const tagsParams = calculateTagsParams(allTags);
-  console.log('tagsParams:', tagsParams)
+  console.log('tagsParams:', tagsParams);
   
   let allTagsHTML = '';
   
   /*[NEW] START LOOP: for each tag in allTags: */
   for(let tag in allTags){
     /*[NEW] generate code of a link and add it to allTags HTML */
-    const linkHTML = '<a href="#' + tag + '" ><span>' + tag + ' (' + allTags[tag] + ') ' + '</span></a>';
+    // const linkHTML = '<a href="#' + tag + '" ><span>' + tag + ' (' + allTags[tag] + ') ' + '</span></a>';
+    
+   // const tagLinkHTML = '<a href="#' + tag + '" ><span>' + calculateTagClass(allTags[tag], tagsParams) + '</span></a>';
+
+    const tagLinkHTML = '<a class="' + calculateTagClass(allTags[tag], tagsParams) +'" href="#' + tag + '" ><span>' + tag + '</span></a>'; 
+
+    console.log(tagLinkHTML);
    
-    allTagsHTML = allTagsHTML + linkHTML;
+    allTagsHTML += tagLinkHTML;
  
   /*[NEW] END LOOP: for each tag in allTags: */
   }
