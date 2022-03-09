@@ -30,6 +30,7 @@ const optArticleSelector = '.post',
   optArticleTagSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
   optTagsListSelector = '.tags.list';
+  
     
 
 function generateTitleLinks(customSelector = ''){
@@ -41,7 +42,7 @@ function generateTitleLinks(customSelector = ''){
   const articles = document.querySelectorAll(optArticleSelector + customSelector);
       
   let html = '';
- 
+   
   for(let article of articles){
     const articleId = article.getAttribute('id');
     const articleTitle = article.querySelector(optTitleSelector).innerHTML;
@@ -71,6 +72,7 @@ function generateTags(){
     const tagWrapper = article.querySelector(optArticleTagSelector);
     /* make html variable with empty string */
     let html = '';
+    
     /* get tags from data-tags attribute */
     const articleTags = article.getAttribute('data-tags');
     /* split tags into array */
@@ -79,9 +81,14 @@ function generateTags(){
     for(let tag of articleTagsArray) {
       /* generate HTML of the link */
       const linkHTML = '<a href="#tag-' + tag + '" ><span>' + tag + '</span></a>';
+      
+      
       /* add generated code to html variable */
       html = html + linkHTML;
+      
+      
       /* [NEW] check if this link is NOT already in allTags */
+      
       if(!allTags.hasOwnProperty(tag)){
         /* [NEW] add generated code to allTags array */
         allTags[tag] = 1;
@@ -98,25 +105,23 @@ function generateTags(){
   const tagList = document.querySelector(optTagsListSelector);
   
   /*[NEW] create variable for all links HTML code */
-
-
   let allTagsHTML = '';
+  
   /*[NEW] START LOOP: for each tag in allTags: */
   for(let tag in allTags){
     /*[NEW] generate code of a link and add it to allTags HTML */
-    allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+    const linkHTML = '<a href="#' + tag + '" ><span>' + tag + ' (' + allTags[tag] + ') ' + '</span></a>';
    
-    const linkHTML = '<a href="#' + tag + '" ><span>' + allTagsHTML + '</span></a>';
-    allTagsHTML = linkHTML;   
-
+    allTagsHTML = allTagsHTML + linkHTML;
+ 
   /*[NEW] END LOOP: for each tag in allTags: */
   }
   /*[NEW] add html from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
+  console.log(allTagsHTML);
   
 }
 generateTags();
-
 
 function tagClickHandler(event){
 
