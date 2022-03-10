@@ -3,7 +3,10 @@
 /* Variables */
 
 $color-light: #fff;
-$color-dark: #444;
+$color-dark: rgb(61, 110, 54);
+$color-tag-one: red;
+$color-tag-two: blue;
+$color-tag-three: yellowgreen;
 
 $font-logo: 'Sacramento', cursive;
 $font-header: 'Oswald', sans-serif;
@@ -54,6 +57,13 @@ body {
 
 .sidebar {
   flex: 1 0 0;
+  
+  h2 {
+    text-align: center;
+  }
+  ul {
+    text-align: center;
+  }
 }
 
 .posts {
@@ -95,6 +105,14 @@ body {
   }
 }
 
+.titles li {
+  text-align: center;
+  a {
+  color: rgb(255, 123, 0);
+  font-size: 20px;
+  }
+}
+
 /* Authors */
 
 .authors {
@@ -126,4 +144,25 @@ body {
 .post-tags a {
   margin-right: 15px;
   text-decoration: none;
+}
+
+.sidebar .tags {
+  li {
+  display: inline;
+  }
+  .tag-size-6 {
+  font-size: 25px;
+  margin-right: 5px;
+  color: $color-tag-one;
+  }
+  .tag-size-5 {
+    font-size: 21px;
+    margin-right: 5px;
+    color: $color-tag-two;
+  }
+  .tag-size-4 {
+    font-size: 17px;
+    margin-right: 5px;
+    color: $color-tag-three;
+  }
 }
