@@ -9,6 +9,7 @@ function titleClickHandler(event){
   for(let activeLink of activeLinks){
     activeLink.classList.remove('active');
   }
+  
   clickedElement.classList.add('active');
 
   const articleList = document.querySelectorAll('.posts .post');
@@ -202,9 +203,9 @@ addClickListenersToTags();
 
 
 function generateAuthors(){
-  /* [NEW] create a new variable allAuthors with an empty object */
-  let allAuthors = {};
-  
+  /* [new] create a new variable with an empty array */
+  let allAuthors = [];
+    
   const articles = document.querySelectorAll(optArticleSelector);
 
   for(let article of articles){
@@ -213,21 +214,28 @@ function generateAuthors(){
 
     const articleAuthor = article.getAttribute('data-author');
    
-    const linkHTML = '<a href="#author-' + articleAuthor + '" ><span>' + articleAuthor + '</span></a>';
+    const linkHTML = '<li>' + '<a href="#author-' + articleAuthor + '" ><span>' + articleAuthor + '</span></a>' + '</li>';
     
     authorWrapper.innerHTML = linkHTML;
+
+    /* [new] check if this link is NOT aldready in allAuthors */
+    if (allAuthors.indexOf(linkHTML) == -1){
+      allAuthors.push(linkHTML);
+    }
   
   }
+
+  /* [new] find list of authors in right column */
+  const authorList = document.querySelector(optAuthorsListSelector);
+  
+  /* [new] add html from allAuthors to authorsList */
+  authorList.innerHTML = allAuthors.join(' ');
+
   const links = document.querySelectorAll('.post-author a');
       
   for(let link of links){
     link.addEventListener('click', authorClickHandler);
   }
-
-  /* [NEW] find list of authors in right column */
-  const authorsList = document.querySelector(optAuthorsListSelector);
-  console.log(authorsList);
-   
 }
 generateAuthors();
 
@@ -261,7 +269,7 @@ function authorClickHandler(event){
 
 function addClickListenersToAuthors(){
 
-  const links = document.querySelectorAll('.post-author a,');
+  const links = document.querySelectorAll('.post-author a, .authors.list a');
 
   for(let link of links){
 
