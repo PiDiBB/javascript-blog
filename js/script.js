@@ -2,7 +2,8 @@
 
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
-  tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML)
+  tagCloudLink: Handlebars.compile(document.querySelector('#template-tag-cloud-link').innerHTML),
+  articleAuthorCloudLink: Handlebars.compile(document.querySelector('#template-author-cloud-link').innerHTML)
 };
 
 function titleClickHandler(event){
@@ -211,7 +212,7 @@ addClickListenersToTags();
 function generateAuthors(){
   
   let allAuthors = [];
-    
+     
   const articles = document.querySelectorAll(optArticleSelector);
 
   for(let article of articles){
@@ -219,7 +220,7 @@ function generateAuthors(){
     const authorWrapper = article.querySelector(optArticleAuthorSelector);
 
     const articleAuthor = article.getAttribute('data-author');
-   
+       
     //const linkHTML = '<li>' + '<a href="#author-' + articleAuthor + '" ><span>' + articleAuthor + '</span></a>' + '</li>';
     const linkHTMLData = {id: 'author-' + articleAuthor, title: articleAuthor};
     const linkHTML = templates.articleLink(linkHTMLData);
